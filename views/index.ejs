@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Taco Recipes</title>
+  <link rel="stylesheet" type="text/css" href="/styles/main.css">
+</head>
+
+<body>
+  <h1>Taco Town 🌮</h1>
+
+  <form action="/recipe" method="POST" class="buttons">
+    <button type="submit" value="chicken" name="choice">🍗</button>
+    <button type="submit" value="beef" name="choice">🥩</button>
+    <button type="submit" value="fish" name="choice">🐟</button>
+  </form>
+  <div id="recipeContainer" class="hidden">
+
+       <!--If Recipies exist, show the recipe name e.g. <h2>Recipe name</h2>-->
+    <% if (locals.RecipeData){ %>
+      
+    <h2><%=RecipeData.name %></h2> 
+    
+    <h3>Ingredients:</h3>
+    <ul id="ingredientsList">
+      <li><%= RecipeData.ingredients.protein.name %>, <%= RecipeData.ingredients.protein.preparation %></li>
+      <li><%= RecipeData.ingredients.salsa.name %></li>
+      <% for(var i=0; i<RecipeData.ingredients.toppings.length;i++){ %>
+        <li><%= RecipeData.ingredients.toppings[i].quantity %> of <%= RecipeData.ingredients.toppings[i].name  %></li>
+       <% } %> 
+    </ul>
+    <% } else { %>
+    
+       <!-- If no recipe yet, show: -->
+      <h2>Pick your favourite taco ingredient 👆</h2>
+   
+     
+    <% } %>
+
+    
+
+
+  </div>
+</body>
+
+</html>
